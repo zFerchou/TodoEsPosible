@@ -9,7 +9,6 @@ import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import MuiLink from '@mui/material/Link';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
 import { Link, Outlet } from 'react-router-dom';
 
