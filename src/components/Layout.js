@@ -16,7 +16,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       <Link color="inherit" href="">
-        Mi tik tok =D 18 /06/2025
+        ok
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
