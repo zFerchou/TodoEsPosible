@@ -3,21 +3,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Content from '../components/Content';
 
-
 const About = () => (
-  <main style={{ padding: '1rem' }}>
+  <main style={{ padding: '1rem', color: 'white' }}>
     <h2>Acerca de TodoEsPosible</h2>
     <p>Esta es una aplicación creada para demostrar rutas en React.</p>
   </main>
 );
 
-const RoutesApp = () => {
+const AppRouter = () => {
   return (
-    <Router>
+    <Router basename="/TodoEsPosible">
       <Routes>
-        {/* Ruta con layout */}
         <Route path="/" element={<Layout />}>
-          {/* Rutas hijas */}
           <Route index element={<Content />} />
           <Route path="acerca" element={<About />} />
         </Route>
@@ -26,4 +23,4 @@ const RoutesApp = () => {
   );
 };
 
-export default RoutesApp;
+export default AppRouter;

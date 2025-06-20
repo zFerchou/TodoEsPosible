@@ -9,15 +9,15 @@ import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+import MuiLink from '@mui/material/Link';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
+import { Link, Outlet } from 'react-router-dom';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
-      {' '}
-      <Link color="inherit" href="https://www.tiktok.com/@slqnd1r">
-        Mi tik tok =D
+      <Link color="inherit" href="">
+        Mi tik tok =D 18 /06/2025
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -45,7 +45,7 @@ export default function Album() {
           height: '100vh',
           objectFit: 'cover',
           zIndex: -1,
-          filter: 'brightness(0.7)', // opcional para oscurecer el video y mejorar la legibilidad
+          filter: 'brightness(0.7)',
         }}
       >
         <source src="video.mp4" type="video/mp4" />
@@ -62,13 +62,12 @@ export default function Album() {
       </AppBar>
 
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'transparent', // transparente para que se vea el video de fondo
+            bgcolor: 'transparent',
             pt: 8,
             pb: 6,
-            color: 'white', // texto blanco para que contraste con el video
+            color: 'white',
             position: 'relative',
             zIndex: 1,
           }}
@@ -84,8 +83,8 @@ export default function Album() {
               Slenderin
             </Typography>
             <Typography variant="h5" align="center" paragraph>
-              Es una copilacion de mis mejores videos de yt y tiktok si quieren hablar conmigo mi
-              discord es g75u o si unirse al clan de mis amigos solo pongan
+              Es una copilación de mis mejores videos de yt y tiktok. Si quieren hablar conmigo, mi
+              Discord es g75u. O si quieren unirse al clan de mis amigos, solo únanse.
             </Typography>
             <Box sx={{ mt: 4 }}>
               <Grid container spacing={2} justifyContent="center">
@@ -108,51 +107,53 @@ export default function Album() {
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
-                {/* Aquí va el contenido de las Cards */}
                 <Card
-  sx={{
-    maxWidth: 1000,  // por ejemplo 1000px de ancho máximo para la Card
-    width: '400%',   // o puedes usar un ancho fijo '900px', etc.
-    margin: 'auto',  // para centrar la Card horizontalmente
-  }}
->
-  <CardContent sx={{ flexGrow: 1 }}>
-    <Typography gutterBottom variant="h5" component="h2">
-      Slenderin
-    </Typography>
-    <Typography>
-    I'm a cheater?
-    </Typography>
-    <Box
-      sx={{
-        position: 'relative',
-        paddingTop: '56.25%',  // 16:9 aspect ratio (ajusta si quieres otra proporción)
-        mt: 2,
-        mb: 2,
-        width: '100%',
-        height: 0,
-      }}
-    >
-      <iframe
-        src="https://www.youtube.com/embed/ZQdbvp6fyTc?si=ydN023T1sqJLTztr"
-        title="Slenderin Video"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          border: 0,
-        }}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    </Box>
-  </CardContent>
-</Card>
+                  sx={{
+                    maxWidth: 1000,
+                    width: '400%',
+                    margin: 'auto',
+                  }}
+                >
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Slenderin
+                    </Typography>
+                    <Typography>I'm a cheater?</Typography>
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        paddingTop: '56.25%',
+                        mt: 2,
+                        mb: 2,
+                        width: '100%',
+                        height: 0,
+                      }}
+                    >
+                      <iframe
+                        src="https://www.youtube.com/embed/ZQdbvp6fyTc?si=ydN023T1sqJLTztr"
+                        title="Slenderin Video"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          border: 0,
+                        }}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </Box>
+                  </CardContent>
+                </Card>
               </Grid>
             ))}
           </Grid>
+        </Container>
+
+        {/* ⬇️ Aquí se renderiza el contenido de las rutas como Content o About */}
+        <Container sx={{ py: 4, zIndex: 1, position: 'relative' }}>
+          <Outlet />
         </Container>
       </main>
 
