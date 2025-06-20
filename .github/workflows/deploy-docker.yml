@@ -1,27 +1,39 @@
-name: Build React App in Docker and Deploy to GitHub Pages
+name: Deploy Docker Build to gh-pages
 
 on:
   push:
     branches:
-      - main
+      - main  
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Crear contenedor con Node y construir app
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/app -w /app node:20 bash -c "
-            npm install &&
-            npm run build
-          "
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-      - name: Deploy a GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+    - name: Build Docker image
+      run: |
+        docker build -t my-app-image .
+
+    - name: Create container from image
+      run: |
+        docker create --name mycontainer my-app-image
+
+    - name: Copy build output from container
+      run: |
+        docker cp mycontainer:/usr/share/nginx/html ./build
+
+    - name: Remove container
+      run: docker rm mycontainer
+
+    - name: Deploy to gh-pages branch
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
+        publish_branch: gh-pages
